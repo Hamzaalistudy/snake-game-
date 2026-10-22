@@ -1,4 +1,4 @@
-# Snake_GAME_PROJECT
+# SNAKE_GAME_PROJECT
 
 The project includes a responsive, playable browser GUI and a companion C++ console implementation that demonstrates the requested object-oriented design.
 
@@ -12,8 +12,6 @@ The project includes a responsive, playable browser GUI and a companion C++ cons
 | `main.cpp` | C++17 console version with `Snake`, `Food`, and `Game` classes. |
 | `LEARNING_GUIDE.md` | Formal walkthrough of the files, functions, libraries, OOP design, and game logic. |
 | `TEST_CASES.md` | Required edge-case checklist and reproducible test steps. |
-| `snake-game-poster.png` | Project infographic, designed to match the supplied example poster's format. |
-
 ## Run the GUI
 
 1. Open `index.html` in a current browser. No server, package installation, or build step is required.
