@@ -15,8 +15,8 @@
 
 namespace {
 
-constexpr int kBoardWidth = 22;
-constexpr int kBoardHeight = 16;
+constexpr int kMatrixWidth = 22;
+constexpr int kMatrixHeight = 16;
 
 struct Point {
     int x{};
@@ -57,7 +57,7 @@ Point NextPosition(Point position, Direction direction) {
 
 class Snake {
 public:
-    Snake() : Snake({kBoardWidth / 2, kBoardHeight / 2}) {}
+    Snake() : Snake({kMatrixWidth / 2, kMatrixHeight / 2}) {}
 
     explicit Snake(Point start)
         : segments_{{start.x, start.y}, {start.x - 1, start.y},
@@ -109,7 +109,7 @@ private:
 
 class Game {
 public:
-    Game() : Game(kBoardWidth, kBoardHeight) {}
+    Game() : Game(kMatrixWidth, kMatrixHeight) {}
 
     Game(int width, int height)
         : width_(width),
@@ -120,7 +120,7 @@ public:
           state_(GameState::Ready),
           random_(std::random_device{}()) {
         if (width < 6 || height < 6) {
-            throw std::invalid_argument("The board must be at least 6 by 6.");
+            throw std::invalid_argument("The game matrix boundary limits must be at least 6x6.");
         }
         PlaceFood();
     }
@@ -218,8 +218,8 @@ private:
 #ifdef _WIN32
 void Draw(const Game& game) {
     system("cls");
-    std::cout << "S N A K E   /   Score " << game.GetScore()
-              << "     WASD / arrows: move     P: pause     R: restart     Q: quit\n";
+    std::cout << "ALI HAMZA'S SNAKE ENGINE v1.0 | Score: " << game.GetScore()
+              << " | Mappings: WASD/Arrows | P: Pause | R: Reset | Q: Quit\n";
 
     const auto& snake = game.GetSnake();
     const Point food = game.GetFood();
@@ -242,9 +242,9 @@ void Draw(const Game& game) {
         std::cout << '\n';
     }
 
-    if (game.GetState() == GameState::Paused) std::cout << "\nPAUSED\n";
-    if (game.GetState() == GameState::GameOver) std::cout << "\nGAME OVER\n";
-    if (game.GetState() == GameState::Won) std::cout << "\nBOARD CLEARED!\n";
+    if (game.GetState() == GameState::Paused) std::cout << "\n[ SYSTEM PAUSED ]\n";
+    if (game.GetState() == GameState::GameOver) std::cout << "\n[ ENGINE TERMINATED: GAME OVER ]\n";
+    if (game.GetState() == GameState::Won) std::cout << "\n[ MATRIX MAXED OUT: VICTORY ]\n";
     std::cout.flush();
 }
 
@@ -296,8 +296,8 @@ int main() {
         std::this_thread::sleep_until(frameStart + std::chrono::milliseconds(120));
     }
 
-    std::cout << "\nFinal score: " << game.GetScore() << "\n";
-    std::cout << "Press R to play again, or Q to quit.\n";
+    std::cout << "\nSession Terminated. Final Score Allocation: " << game.GetScore() << "\n";
+    std::cout << "Press R to reinitialize matrix state, or Q to close execution pipeline.\n";
     while (true) {
         const int key = _getch();
         if (key == 'q' || key == 'Q') break;
@@ -314,13 +314,13 @@ int main() {
                 std::this_thread::sleep_until(frameStart +
                                               std::chrono::milliseconds(120));
             }
-            std::cout << "\nFinal score: " << game.GetScore()
-                      << "\nPress R to play again, or Q to quit.\n";
+            std::cout << "\nSession Terminated. Final Score Allocation: " << game.GetScore()
+                      << "\nPress R to reinitialize matrix state, or Q to close execution pipeline.\n";
         }
     }
 #else
-    std::cout << "The C++ console controls use Windows _getch().\n"
-                 "Open index.html in a browser for the full playable GUI.\n";
+    std::cout << "Native terminal tracking architecture utilizes standalone Windows polling.\n"
+                 "Launch index.html directly within any browser target to access full GUI.\n";
 #endif
     return 0;
 }
