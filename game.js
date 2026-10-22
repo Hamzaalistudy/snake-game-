@@ -1,13 +1,9 @@
 "use strict";
 
 (() => {
-  // Grid matrix configurations
   const COLUMNS = 22;
   const ROWS = 16;
-  
-  // Game loop intervals per difficulty level (in ms)
   const SPEEDS = { chill: 150, classic: 115, turbo: 80 };
-  
   const Direction = Object.freeze({ UP: "up", DOWN: "down", LEFT: "left", RIGHT: "right" });
   
   const DELTAS = Object.freeze({
@@ -160,7 +156,6 @@
     }
   }
 
-  // DOM Layout Connectors
   const canvas = document.querySelector("#game-canvas");
   const context = canvas.getContext("2d");
   const overlay = document.querySelector("#game-overlay");
@@ -185,7 +180,6 @@
   let accumulator = 0;
   let touchStart = null;
 
-  // Custom local storage key tracking personal records safely
   try {
     bestScore = Number(window.localStorage.getItem("ali_hamza_snake_highscore")) || 0;
   } catch (error) {
@@ -272,13 +266,14 @@
               ? [[x + size * .31, y + size * .3], [x + size * .69, y + size * .3]]
               : [[x + size * .31, y + size * .7], [x + size * .69, y + size * .7]];
         positions.forEach(([ex, ey]) => {
-context.beginPath(); context.arc(ex, ey, eyeRadius, 0, Math.PI * 2); context.fill();
-});
-}
-context.restore();
-});
-}
-function getHeadDirection() {
+          context.beginPath(); context.arc(ex, ey, eyeRadius, 0, Math.PI * 2); context.fill();
+        });
+      }
+      context.restore();
+    });
+  }
+
+  function getHeadDirection() {
 const segments = game.snake;
 if (segments.length < 2) return "right";
 const head = segments[0];
