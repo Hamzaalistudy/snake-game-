@@ -1,6 +1,6 @@
 # Snake — Arcade Lab
 
-A complete Snake project built from the requirements in the **Snake Game** row of `C++_OOP_40_Projects_and_Games.xlsx` (project 31). The project includes a responsive, playable browser GUI and a companion C++ console implementation that demonstrates the requested object-oriented design.
+The project includes a responsive, playable browser GUI and a companion C++ console implementation that demonstrates the requested object-oriented design.
 
 ## Project files
 
