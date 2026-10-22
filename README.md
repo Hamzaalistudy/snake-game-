@@ -1,4 +1,4 @@
-# Snake — Arcade Lab
+# Snake_GAME_PROJECT
 
 The project includes a responsive, playable browser GUI and a companion C++ console implementation that demonstrates the requested object-oriented design.
 
