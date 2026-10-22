@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1118">
+  <meta name="description" content="A polished, classroom-ready Snake game with a complete OOP learning experience.">
+  <title>Snake — Arcade Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Arcade Lab home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>ARCADE<span class="brand-accent">/LAB</span></span>
+      </a>
+      <div class="topbar-note"><span class="status-dot"></span> CLASSIC ARCADE · OOP PROJECT</div>
+      <a class="top-link" href="LEARNING_GUIDE.md" target="_blank" rel="noreferrer">HOW IT WORKS <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow"><span>01</span> THE CLASSIC, REBUILT</p>
+          <h1 id="page-title">SNAKE<span class="title-period">.</span></h1>
+          <p class="intro-copy">One more bite. One more block. <span>How long can you last?</span></p>
+        </div>
+        <div class="round-tag"><span class="round-icon">↗</span><span>READY WHEN<br>YOU ARE</span></div>
+      </section>
+
+      <section class="game-layout" aria-label="Snake game">
+        <div class="play-column">
+          <div class="scorebar">
+            <div class="score-card">
+              <span class="stat-label">SCORE</span>
+              <strong id="score-value" aria-live="polite">000</strong>
+            </div>
+            <div class="score-card best-card">
+              <span id="best-label" class="stat-label">PERSONAL BEST</span>
+              <strong id="best-value">000</strong>
+            </div>
+            <div class="score-card level-card">
+              <span class="stat-label">PACE</span>
+              <strong id="pace-value">01 <span>×</span></strong>
+            </div>
+            <div class="score-actions">
+              <button id="pause-button" class="icon-button" type="button" aria-label="Pause game" title="Pause (Space)" disabled>Ⅱ</button>
+              <button id="restart-button" class="icon-button" type="button" aria-label="Restart game" title="Restart (R)">↻</button>
+            </div>
+          </div>
+
+          <div class="board-frame">
+            <div class="board-topline"><span><i></i> GAME FIELD</span><span id="game-status">PRESS START TO PLAY</span></div>
+            <div class="canvas-wrap">
+              <canvas id="game-canvas" tabindex="0" aria-label="Snake game board. Use arrow keys or W A S D to move."></canvas>
+              <div id="game-overlay" class="game-overlay">
+                <div class="overlay-card">
+                  <div class="overlay-symbol" aria-hidden="true"><span></span><span></span><span></span><b>●</b></div>
+                  <p class="overlay-kicker">A LITTLE NOSTALGIA</p>
+                  <h2 id="overlay-title">Ready to<br><em>play?</em></h2>
+                  <p id="overlay-copy">Collect the glowing fruit.<br>Don't run into yourself.</p>
+                  <button id="start-button" class="primary-button" type="button">START GAME <span aria-hidden="true">→</span></button>
+                  <div class="overlay-hint">OR PRESS <kbd>ENTER</kbd></div>
+                </div>
+              </div>
+            </div>
+            <div class="board-footer"><span><span class="key-dot"></span> 22 × 16 GRID</span><span>NO WALL WRAP · COLLISION ENDS RUN</span></div>
+          </div>
+          <div class="mobile-controls" aria-label="Touch controls">
+            <button type="button" data-direction="up" aria-label="Move up">↑</button>
+            <div><button type="button" data-direction="left" aria-label="Move left">←</button><button type="button" data-direction="down" aria-label="Move down">↓</button><button type="button" data-direction="right" aria-label="Move right">→</button></div>
+          </div>
+          <p class="keyboard-hint"><span>⌨</span> MOVE WITH <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> OR ARROW KEYS <b>·</b> PAUSE WITH <kbd>SPACE</kbd></p>
+        </div>
+
+        <aside class="side-column">
+          <section class="side-panel controls-panel">
+            <div class="panel-heading"><span class="panel-index">A</span><h2>YOUR CONTROLS</h2></div>
+            <div class="control-row"><div class="control-icon">↕</div><div><strong>Move</strong><span>Arrow keys or WASD</span></div><div class="key-cap">↑↓←→</div></div>
+            <div class="control-row"><div class="control-icon">Ⅱ</div><div><strong>Pause / resume</strong><span>Take a breather</span></div><kbd>SPACE</kbd></div>
+            <div class="control-row"><div class="control-icon">↻</div><div><strong>New run</strong><span>Start fresh anytime</span></div><kbd>R</kbd></div>
+            <div class="speed-control">
+              <label for="speed-select">GAME SPEED</label>
+              <select id="speed-select">
+                <option value="chill">Chill · 150 ms</option>
+                <option value="classic" selected>Classic · 115 ms</option>
+                <option value="turbo">Turbo · 80 ms</option>
+              </select>
+            </div>
+          </section>
+
+          <section class="side-panel objective-panel">
+            <div class="panel-heading"><span class="panel-index green-index">B</span><h2>THE OBJECTIVE</h2></div>
+            <div class="objective-line"><span class="fruit-icon">●</span><p><strong>Eat the fruit</strong><br><span>+10 points · grow by one</span></p></div>
+            <div class="objective-line"><span class="body-icon">▰</span><p><strong>Stay in the game</strong><br><span>Wall or body = game over</span></p></div>
+            <div class="progress-track"><div id="progress-fill"></div></div>
+            <div class="progress-caption"><span id="length-value">LENGTH 03</span><span>GROW TO GET FASTER</span></div>
+          </section>
+
+          <section class="tip-card">
+            <span class="tip-star">✳</span>
+            <div><strong>QUICK TIP</strong><p>Plan your turns early. The snake can't make a U-turn — and neither can you.</p></div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="learning-strip" aria-label="Project learning concepts">
+        <div><span class="learning-symbol">{ }</span><p><strong>BUILT WITH OOP</strong><span>Classes · Encapsulation · State</span></p></div>
+        <div><span class="learning-symbol">↗</span><p><strong>LOGIC IN ACTION</strong><span>Coordinates · Collision · Timers</span></p></div>
+        <div><span class="learning-symbol">⌘</span><p><strong>MADE TO LEARN</strong><span>Play it. Read it. Explain it.</span></p></div>
+      </section>
+    </main>
+
+    <footer class="footer"><span>ARCADE/LAB <span class="footer-dim">· SNAKE PROJECT</span></span><span>MADE FOR THE NEXT GENERATION OF BUILDERS <b>✳</b></span></footer>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
